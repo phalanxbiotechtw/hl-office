@@ -76,7 +76,7 @@ if(DESK){OFF={2:[0,0],1:[0,0]};P.length=0;const QD2=[[720,410],[1465,488],[1295,
   [["gc","ly","kb"],["al","vd"],["cs","fb","rp"]].forEach((r,ri)=>r.forEach((k,ci)=>{const us=r.length===2?[.37,.69]:[.2,.53,.86];const vs=[.12,.5,.9];P.push({k,f:2,q:QD2,uv:[us[ci],vs[ri]],lp:lq(QD2,us[ci],vs[ri]),sz:k==="vd"?235:195});}));
   P.push({k:"dr",f:2,lp:[330,800],sz:290,stand:1,y0:.95});
   [["gc","ly","tr"],["cs","rp"]].forEach((r,ri)=>r.forEach((k,ci)=>{const us=r.length===2?[.36,.7]:[.22,.53,.84];P.push({k,f:1,q:QD1,uv:[us[ci],[.32,.82][ri]],lp:lq(QD1,us[ci],[.32,.82][ri]),sz:262});}));
-  P.push({k:"bm",f:1,lp:[372,1475],sz:315,stand:1});}
+  P.push({k:"bm",f:1,lp:[560,1505],sz:315,stand:1});}
 if(SALES){for(let i=P.length-1;i>=0;i--)if(P[i].f===2)P.splice(i,1);}
 const COF=DESK?{2:[560,700],1:[600,1140]}:{2:[600,760],1:[560,690]};
 const pos=w=>[w.lp[0]+OFF[w.f][0],w.lp[1]+OFF[w.f][1]];
