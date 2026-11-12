@@ -49,7 +49,7 @@ if(D.welcome){const nm0=String((D.user||{}).n||"").split(" ").pop();const h=new 
 /* ===== 資料 ===== */
 const SALES=(D.user||{}).r==="sales"&&!D.u2;const U2=!!D.u2&&!SALES;let DATA=D.data||{}, B=DATA.bots||{}, W=DATA.week||{};
 const L1=D.links1||{}, L2=D.links2||{};
-const NAME={1:{cs:"客服小妹",gc:"遺傳師預約",ly:"領用小幫手",rp:"報告助理",bm:"業務主管",tr:"情報員"},2:{gc:"遺傳諮詢",ly:"領用小妹",kb:"庫存小妹",tr:"情報員",al:"通報專員",vd:"影音小編",cs:"客服專員",fb:"文案小編",rp:"報告助理",dr:"王博"}};
+const NAME={1:{cs:"客服小妹",gc:"遺傳師預約",ly:"領用小幫手",rp:"報告助理",bm:"業務主管",tr:"情報員"},2:{gc:"遺傳諮詢",ly:"領用小妹",kb:"庫存小妹",tr:"情報員",al:"通報專員",vd:"影音小編",cs:"客服專員",fb:"文案小編",rp:"報告助理",dr:"王小博"}};
 const todo=[];
 const RED={ldts:(W.ldts||[]).filter(x=>x.red),tasks:(W.tasks||[]).filter(x=>x.red),dm:((W.dm||{}).items||[])};
 if(U2){Object.entries(B).forEach(([k,b])=>{if(b.todayErr>0)todo.push({t:NAME[2][k]||k,s:"今天 "+b.todayErr+" 次沒成功",u:(L2[k]||[])[0]?.[1]});});
@@ -176,7 +176,7 @@ async function focusWho(w){if(w.f===2&&!U2){gate();return;}{const L0=((w.f===1?L
   if(DESK){document.querySelectorAll(".ro-acc").forEach(x=>x.remove());const li=document.querySelector(`.ro-list li[data-i="${P.indexOf(w)}"]`);if(li){const ac=document.createElement("div");ac.className="ro-acc";ac.innerHTML=sheetEl.innerHTML;ac.querySelectorAll(".grab,.shx,.whoh,.sdesc").forEach(x=>x.remove());if(!ac.textContent.trim()){ac.innerHTML='<p class="sdesc">'+esc((DESC[w.f]||{})[w.k]||"")+'</p>';}ac.onclick=e=>e.stopPropagation();li.after(ac);document.querySelectorAll(".ro-list li").forEach(x=>x.classList.toggle("sel",x===li));ac.scrollIntoView({block:"nearest",behavior:"smooth"});const r3=ac.querySelector("#rp2");if(r3)r3.onclick=openRep;sheetEl.innerHTML="";return;}}
   sheetEl.classList.add("on");$("#shx").onclick=()=>{closeSay();};const r2=$("#rp2");if(r2)r2.onclick=openRep;}
 sheetEl.addEventListener("click",e=>{if(e.target.classList.contains("grab")){closeSay();}});
-const NM1={cs:"客服小妹",gc:"遺傳師預約",ly:"領用小幫手",rp:"報告助理"},NM2={cs:"客服專員",fb:"文案小編",rp:"報告助理",tr:"情報員",vd:"影音小編",kb:"庫存小妹",gc:"遺傳諮詢",ly:"領用小妹",dr:"王博"};
+const NM1={cs:"客服小妹",gc:"遺傳師預約",ly:"領用小幫手",rp:"報告助理"},NM2={cs:"客服專員",fb:"文案小編",rp:"報告助理",tr:"情報員",vd:"影音小編",kb:"庫存小妹",gc:"遺傳諮詢",ly:"領用小妹",dr:"王小博"};
 function loadIC(cb){if(window.__IC){cb&&cb();return;}if(window.__icL){window.__icL.push(cb);return;}window.__icL=[cb];const s=document.createElement("script");s.src=AS+"ic.js?v=1";s.onload=()=>{(window.__icL||[]).forEach(f=>f&&f());};document.head.appendChild(s);}
 function menu(){if($("#mnu").classList.contains("on")){$("#mnu").classList.remove("on");return;}
   const ON2=U2&&curF===2;const f=(L,k,i)=>{const a=L[k]||[];if(typeof i==="string")return a.find(l=>l[0].indexOf(i)===0);return a[i||0];};const IT=[["cs","客服後台",U2?f(L2,"cs"):f(L1,"cs")],["csd","客服數據",U2&&f(L2,"cs","客服數據")],["gc","遺傳諮詢",f(L1,"gc")],["ly","領用申請",f(L1,"ly")],["rq","報告查詢",f(L1,"rp")],["kb","DM 庫存",U2&&f(L2,"kb")],["fb","發文審核",U2&&f(L2,"fb")],["fan","粉絲專頁",U2&&f(L2,"fb","華聯生技")],["ld","特管週報",U2&&f(L2,"rp","特管週報")],["tr","情報日報",f(L1,"tr")],["vd","影音後台",U2&&f(L2,"vd")],["wk","行銷週報",U2&&f(L2,"rp","行銷週報")]].filter(x=>x[2]&&(ON2||(U2?["cs","gc","ly","rq","tr"]:["cs","ly","rq"]).includes(x[0])));if(!ON2){const c=IT.find(x=>x[0]==="cs");if(c)c[2]=f(L1,"cs")||c[2];}
