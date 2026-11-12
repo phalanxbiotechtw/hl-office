@@ -757,7 +757,7 @@ const LS={g:k=>{try{return localStorage.getItem(k)}catch(e){return null}},s:(k,v
 const H=new URLSearchParams(location.hash.slice(1)),Q=new URLSearchParams(location.search),g=k=>H.has(k)?H.get(k):Q.get(k);
 let t=g("t"),k=g("k"),lerr=g("lerr"),p=g("p"),r=g("r"),go=g("go")||"";
 if(location.hash||location.search){try{history.replaceState(null,"",location.pathname)}catch(e){}}
-if(lerr){LS.s("hlt",null);LS.s("hld",null);}
+if(lerr||g("out")!==null){LS.s("hlt",null);LS.s("hld",null);if(!lerr)t=null;}
 if(t)LS.s("hlt",t);else t=LS.g("hlt");
 const DKb=innerWidth>=900&&innerWidth>innerHeight,IOSb=/iPhone|iPad|iPod/.test(navigator.userAgent)||(/Safari/.test(navigator.userAgent)&&!/Chrome|CriOS|Android|FxiOS|Edg/.test(navigator.userAgent));
 const pimg=u=>{if(u){const i=new Image();i.decoding="async";i.src=u;}};
