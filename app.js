@@ -126,7 +126,7 @@ function people(){const g=$("#ppl"),ov=$("#over");g.innerHTML="";ov.innerHTML=""
       const AN=DESK&&!IOS&&(window.__ANIM||{})[w.k+"_work"];if(AN){const fo=mk("foreignObject",{x:x-sz/2,y:y-sz*y0,width:sz,height:sz},body);const v=document.createElementNS("http://www.w3.org/1999/xhtml","video");v.src=AN;v.muted=true;v.loop=true;v.autoplay=true;v.playsInline=true;v.setAttribute("muted","");v.setAttribute("playsinline","");v.style.cssText="width:100%;height:100%;display:block";fo.appendChild(v);v.play&&v.play().catch(()=>{});w.vid=v;}else if(src){const c=drw?sheet(body,src,x-sz/2,y-sz*y0,sz,6,A.drwN||24,A.drwF||340):sheet(body,src,x-sz/2,y-sz*y0,sz,6,24,170);c.fl=w.f;c.ms=drw?166:125;clips.push(c);w.clip=c;}if(w.k==="dr"){const k=sz/260,bx=x-sz/2,by=y-sz*y0;const tg=mk("g",{transform:`translate(${bx+30*k} ${by+28*k}) scale(${k}) skewY(-1.5)`,style:"pointer-events:none","font-weight":800},body);
   const T=(tx,ty,s,f,t,a)=>{const e=mk("text",{x:tx,y:ty,"font-size":s,fill:f,"text-anchor":a||"start"},tg);e.textContent=t;};
   T(55,19,18,"#1e2b3d","本週目標","middle");[["LINE 50 則/天","#b4473a"],["FB 一三五發文","#2f6878"],["特管週報 週一","#8a6a2e"],["情報日報 每天","#1e2b3d"]].forEach(([t,f],i)=>T(2,41+i*17,12.5,f,"✓ "+t));}if(!src&&!AN){mk("image",{href:(A.full||{})[w.k]||"",x:x-sz/2,y:y-sz*y0,width:sz,height:sz},body);}}
-    mk("rect",{x:x-sz*.27,y:y-sz*(w.stand?.95:.82),width:sz*.54,height:sz*(w.stand?.92:.78),fill:"rgba(0,0,0,0)",class:"hit"},gg);
+    mk("rect",{x:x+sz*(w.stand?(w.k==="dr"?.1:.04):-.1),y:y-sz*(w.stand?.9:.74),width:sz*(w.stand?.3:.34),height:sz*(w.stand?.72:.58),fill:"rgba(0,0,0,0)",class:"hit"},gg);
     const TO=DESK?{vd:[46,34],dr:[92,10]}:{dr:[125,105]},to=TO[w.k]||[0,0],top=(w.stand?y-sz*.98:y-sz*.9)+to[1], cx=(w.stand?x+30:x+8)+to[0];w.top=[cx,top];
     if(false){const bb=mk("g",{class:"bang"},ov);mk("circle",{cx,cy:top-40,r:30,fill:"#e04848",stroke:"#fff","stroke-width":6},bb);mk("text",{x:cx,y:top-26,"text-anchor":"middle","font-size":42,"font-weight":900,fill:"#fff"},bb).textContent="!";}
     const t=nm(w),fs=DESK?24:44,tw2=t.length*fs+28,ty=top-fs-(DESK?10:22),ng=mk("g",{class:"nm",style:"pointer-events:none"},ov);w.ng=ng;mk("rect",{x:cx-tw2/2,y:ty,width:tw2,height:fs+16,rx:(fs+16)/2},ng);
@@ -290,7 +290,7 @@ if(on){ctx.suspend();set(false);}else{ctx.resume();load();set(true);}},true);}
 let pin="";
 async function gate(){closeSay();pin="";drawPin();$("#gate").classList.add("on");}
 function drawPin(){document.querySelectorAll("#dots i").forEach((d,i)=>d.classList.toggle("on",i<pin.length));const o=document.querySelector(".pad .ok");if(o)o.disabled=pin.length!==6;}
-document.querySelectorAll(".pad button,#gate .gx").forEach(b=>b.onclick=()=>{const n=b.dataset.n;if(n==="ok"){if(pin.length===6)location.replace(location.pathname+"?go=2#p="+pin);return;}
+document.querySelectorAll(".pad button,#gate .gx").forEach(b=>b.onclick=()=>{const n=b.dataset.n;if(n==="ok"){if(pin.length===6){try{sessionStorage.setItem("hlp",pin)}catch(e){}location.replace(location.pathname+"?go=2");}return;}
   if(n==="x"){$("#gate").classList.remove("on");return;}if(n==="b"){pin=pin.slice(0,-1);drawPin();return;}
   if(pin.length<6){pin+=n;drawPin();}});
 if(D.pinErr){$("#dots").classList.add("shake");}

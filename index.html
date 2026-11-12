@@ -755,7 +755,7 @@ const BASE="https://phalanx-genomics.app.n8n.cloud/webhook/",AS="a/";
 (function(){
 const LS={g:k=>{try{return localStorage.getItem(k)}catch(e){return null}},s:(k,v)=>{try{v==null?localStorage.removeItem(k):localStorage.setItem(k,v)}catch(e){}}};
 const H=new URLSearchParams(location.hash.slice(1)),Q=new URLSearchParams(location.search),g=k=>H.has(k)?H.get(k):Q.get(k);
-let t=g("t"),k=g("k"),lerr=g("lerr"),p=g("p"),r=g("r"),go=g("go")||"";
+let t=g("t"),k=g("k"),lerr=g("lerr"),p=null,r=g("r"),go=g("go")||"";try{p=sessionStorage.getItem("hlp");sessionStorage.removeItem("hlp")}catch(e){}
 if(location.hash||location.search){try{history.replaceState(null,"",location.pathname)}catch(e){}}
 if(lerr||g("out")!==null){LS.s("hlt",null);LS.s("hld",null);if(!lerr)t=null;}
 if(t)LS.s("hlt",t);else t=LS.g("hlt");
@@ -770,7 +770,7 @@ const add=(src,cb)=>{const s=document.createElement("script");s.src=src;s.async=
 const start=D=>{window.D=D;
   if(D.user)preSP();
   else add(AS+"lg.js?v=1");
-  add("app.js?v=d0e33ec0");};
+  add("app.js?v=dab9fbf3");};
 if(!t&&!k){start({user:null,sales:[],lerr:lerr||""});return;}
 let C=null;try{C=JSON.parse(LS.g("hld")||"null")}catch(e){}
 const useC=()=>{const d=C.d;d.pinErr=false;d.go=d.u2||go==="1"?go:"1";start(d);};
@@ -778,7 +778,7 @@ if(!p&&!r&&!k&&C&&C.tok===t&&Date.now()-C.at<15*60000){useC();return;}
 const ld=document.getElementById("boot");if(ld)ld.style.display="flex";
 const qs=new URLSearchParams();if(k)qs.set("k",k);else qs.set("t",t);if(p)qs.set("p",p);if(r)qs.set("r","1");if(go)qs.set("go",go);
 const ac=new AbortController();setTimeout(()=>ac.abort(),25000);
-fetch(BASE+"hl-app-api?"+qs,{cache:"no-store",signal:ac.signal}).then(x=>x.json()).then(D=>{if(ld)ld.remove();
+fetch(BASE+"hl-app-api",{method:"POST",body:qs,cache:"no-store",signal:ac.signal}).then(x=>x.json()).then(D=>{if(ld)ld.remove();
   if(!D||D.user===null){LS.s("hlt",null);LS.s("hld",null);start(D&&D.user===null?D:{user:null,sales:[],lerr:""});return;}
   if(D.tok)LS.s("hlt",D.tok);LS.s("hld",JSON.stringify({at:Date.now(),tok:D.tok,d:D}));start(D);
 }).catch(()=>{if(ld)ld.remove();if(C&&C.tok===t){useC();return;}const b=document.getElementById("bootx");if(b){b.style.display="flex";b.onclick=()=>location.reload();}});
