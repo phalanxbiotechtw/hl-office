@@ -278,7 +278,10 @@ document.addEventListener("click",e=>{const a=e.target.closest("a[href]");if(a&&
 document.addEventListener("click",e=>{const h=e.target.closest("[data-home]");if(!h)return;document.querySelectorAll(".ro-acc").forEach(x=>x.remove());document.querySelectorAll(".ro-list li.sel").forEach(x=>x.classList.remove("sel"));closeSay();$("#mnu")&&$("#mnu").classList.remove("on");if(!DESK)$("#report").classList.remove("on");$("#gate")&&$("#gate").classList.remove("on");
   const f=U2?2:1;floor(f);if(DESK&&$("#report").classList.contains("on"))$("#report").scrollTo({top:0,behavior:"smooth"});});
 /* ===== 後台檢視 ===== */
-function openURL(u,t){$("#mnu").classList.remove("on");closeSay();if(false){$("#vwt").textContent=String(t||"").replace(/\s+/g," ").trim();$("#vwf").src=u;$("#vw").classList.add("on");try{history.pushState({vw:1},"");}catch(e){}}else location.href=u;}
+const EXT=u=>/AKfycbzfAkWqZ-wcNQTl7ZQSye2XFtmpv|AKfycbyDU8ZpSnkuK8L_CTHGcwfflfe_l/.test(String(u||""));
+const extOpen=u=>{const w=window.open(u,"_blank");if(w){try{w.opener=null}catch(e){}}else location.href=u;};
+document.addEventListener("click",e=>{const a=e.target.closest&&e.target.closest("a[href]");if(a&&EXT(a.href)){e.preventDefault();e.stopPropagation();extOpen(a.href);}},true);
+function openURL(u,t){if(EXT(u)){$("#mnu").classList.remove("on");closeSay();extOpen(u);return;}$("#mnu").classList.remove("on");closeSay();if(false){$("#vwt").textContent=String(t||"").replace(/\s+/g," ").trim();$("#vwf").src=u;$("#vw").classList.add("on");try{history.pushState({vw:1},"");}catch(e){}}else location.href=u;}
 function closeVW(back){if(!$("#vw").classList.contains("on"))return;$("#vw").classList.remove("on");$("#vwf").src="about:blank";if(back)try{if(history.state&&history.state.vw)history.back();}catch(e){}}
 $("#vwh").onclick=$("#vwx").onclick=()=>closeVW(true);addEventListener("popstate",()=>closeVW(false));
 /* ===== 音樂 ===== */
