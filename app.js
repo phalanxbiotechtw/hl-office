@@ -162,7 +162,7 @@ let bi=0,bubT=null;function bubbles(){clearInterval(bubT);const show=()=>{const 
 /* ===== 點角色 ===== */
 const sheetEl=$("#sheet");function closeSay(){sheetEl.classList.remove("on");P.forEach(w=>w.ng&&w.ng.classList.remove("big"));}
 const STN={work:["工作中","var(--work)"],idle:["待命","var(--ok)"],err:["需要處理","var(--err)"]};
-async function focusWho(w){if(w.f===2&&!U2){gate();return;}{const L0=((w.f===1?L1:L2)[w.k])||[];const pick=w.k==="cs"&&w.f===1&&!SALES&&(D.allSales||[]).length;if(L0.length&&!pick){openURL(L0[0][1],L0[0][0]);return;}}if(curF!==w.f&&!DESK)await floor(w.f);
+async function focusWho(w){if(w.f===2&&!U2){gate();return;}{const L0=((w.f===1?L1:L2)[w.k])||[];const pick=w.k==="cs"&&w.f===1&&!SALES&&(D.allSales||[]).length;if(L0.length===1&&!pick){openURL(L0[0][1],L0[0][0]);return;}}if(curF!==w.f&&!DESK)await floor(w.f);
   if(w.ng)w.ng.classList.add("big");
   const s=state(w),b=B[w.k]||{},L=((w.f===1?L1:L2)[w.k])||[],G=GOALS[w.k];
   const stat=(w.f===2||w.k==="cs")&&B[w.k]?`<div><b>${b.today||0}<small>次</small></b><span>今天</span></div><div><b>${b.week||0}<small>次</small></b><span>本週</span></div>`:"";
