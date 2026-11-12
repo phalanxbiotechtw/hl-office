@@ -96,7 +96,7 @@ root.innerHTML=`<div id="map"><svg id="st" preserveAspectRatio="xMidYMid slice">
 <div id="elevator" ${SALES?'style="display:none"':""}><button data-f="2">2F${U2?"":'<span class="lock"></span>'}</button><button data-f="1">1F</button></div>
 <button class="fit" id="fit">⤢</button><div id="ticker" style="display:none"><span class="t" id="tk"></span></div>
 <div id="sheet"></div>
-<div id="gate"><div class="g-inner"><p class="g-t">2F 企劃辦公室</p><p class="g-s" id="per">${D.pinErr?"密碼不對 再試一次":"請輸入門禁密碼"}</p><div class="dots" id="dots">${"<i></i>".repeat(8)}</div>
+<div id="gate"><div class="g-inner"><p class="g-t">2F 企劃辦公室</p><p class="g-s" id="per">${D.pinErr?"密碼不對 再試一次":"請輸入門禁密碼"}</p><div class="dots" id="dots">${"<i></i>".repeat(6)}</div>
 <div class="pad">${[1,2,3,4,5,6,7,8,9].map(n=>`<button data-n="${n}">${n}</button>`).join("")}<button class="x" data-n="b">刪除</button><button data-n="0">0</button><button class="ok" data-n="ok">確認</button></div><button class="gx" data-n="x">取消</button></div></div>
 <div id="report"></div><div class="ptr" id="ptr"></div>`;
 const tw=t=>{const d=new Date(t);return (d.getMonth()+1)+"/"+d.getDate()+" "+String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0");};
@@ -289,10 +289,10 @@ if(on){ctx.suspend();set(false);}else{ctx.resume();load();set(true);}},true);}
 /* ===== 門禁 ===== */
 let pin="";
 async function gate(){closeSay();pin="";drawPin();$("#gate").classList.add("on");}
-function drawPin(){document.querySelectorAll("#dots i").forEach((d,i)=>d.classList.toggle("on",i<pin.length));const o=document.querySelector(".pad .ok");if(o)o.disabled=pin.length!==8;}
-document.querySelectorAll(".pad button,#gate .gx").forEach(b=>b.onclick=()=>{const n=b.dataset.n;if(n==="ok"){if(pin.length===8){try{sessionStorage.setItem("hlp",pin)}catch(e){}location.replace(location.pathname+"?go=2");}return;}
+function drawPin(){document.querySelectorAll("#dots i").forEach((d,i)=>d.classList.toggle("on",i<pin.length));const o=document.querySelector(".pad .ok");if(o)o.disabled=pin.length!==6;}
+document.querySelectorAll(".pad button,#gate .gx").forEach(b=>b.onclick=()=>{const n=b.dataset.n;if(n==="ok"){if(pin.length===6){try{sessionStorage.setItem("hlp",pin)}catch(e){}location.replace(location.pathname+"?go=2");}return;}
   if(n==="x"){$("#gate").classList.remove("on");return;}if(n==="b"){pin=pin.slice(0,-1);drawPin();return;}
-  if(pin.length<8){pin+=n;drawPin();}});
+  if(pin.length<6){pin+=n;drawPin();}});
 if(D.pinErr){$("#dots").classList.add("shake");}
 /* ===== 報表 ===== */
 function openRep(){if(!window.__rk)closeSay();
